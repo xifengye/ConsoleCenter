@@ -1,0 +1,147 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white"
+    android:orientation="vertical">
+
+    <TextView
+        android:id="@+id/tv_title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="20dp"
+        android:text="@string/xiaozheng"
+        android:textColor="#4DA0E8"
+        android:textSize="30sp" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:layout_marginLeft="40dp"
+        android:layout_marginTop="30dp"
+        android:layout_marginRight="40dp"
+        android:gravity="center"
+        android:orientation="horizontal">
+
+        <TextView
+            android:layout_width="120dp"
+            android:layout_height="wrap_content"
+            android:src="@drawable/icon_liangdu"
+            android:text="@string/btn_top_left"
+            android:textSize="20sp" />
+
+        <SeekBar
+            android:id="@+id/seekbar_top_left"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:max="20"
+            android:progressDrawable="@drawable/seekbar_shape"
+            android:thumb="@drawable/selector_thumb_bar"
+            android:maxHeight="3dp"
+            android:minHeight="3dp"
+            android:progress="10" />
+        <!--        android:secondaryProgress="70"-->
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:layout_marginLeft="40dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginRight="40dp"
+        android:gravity="center"
+        android:orientation="horizontal">
+
+        <TextView
+            android:layout_width="120dp"
+            android:layout_height="wrap_content"
+            android:src="@drawable/icon_liangdu"
+            android:text="@string/btn_top_right"
+            android:textSize="20sp" />
+
+        <SeekBar
+            android:id="@+id/seekbar_top_right"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:progressDrawable="@drawable/seekbar_shape"
+            android:thumb="@drawable/selector_thumb_bar"
+            android:max="20"
+            android:maxHeight="3dp"
+            android:minHeight="3dp"
+            android:progress="10" />
+        <!--        android:secondaryProgress="70"-->
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:layout_marginLeft="40dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginRight="40dp"
+        android:gravity="center"
+        android:orientation="horizontal">
+
+        <TextView
+            android:layout_width="120dp"
+            android:layout_height="wrap_content"
+            android:src="@drawable/icon_liangdu"
+            android:text="@string/btn_down_left"
+            android:textSize="20sp" />
+
+        <SeekBar
+            android:id="@+id/seekbar_down_left"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:progressDrawable="@drawable/seekbar_shape"
+            android:thumb="@drawable/selector_thumb_bar"
+            android:max="20"
+            android:maxHeight="3dp"
+            android:minHeight="3dp"
+            android:progress="10" />
+        <!--        android:secondaryProgress="70"-->
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:layout_marginLeft="40dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginRight="40dp"
+        android:gravity="center"
+        android:orientation="horizontal">
+
+        <TextView
+            android:layout_width="120dp"
+            android:layout_height="wrap_content"
+            android:src="@drawable/icon_liangdu"
+            android:text="@string/btn_down_right"
+            android:textSize="20sp" />
+
+        <SeekBar
+            android:id="@+id/seekbar_down_right"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:progressDrawable="@drawable/seekbar_shape"
+            android:thumb="@drawable/selector_thumb_bar"
+            android:max="20"
+            android:maxHeight="3dp"
+            android:minHeight="3dp"
+            android:progress="10" />
+    </LinearLayout>
+
+    <Button
+        android:id="@+id/btn_moren"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:focusable="true"
+        android:layout_marginTop="20dp"
+        android:background="@drawable/border_line_while"
+        android:text="@string/moren"
+        android:textColor="@color/white" />
+</LinearLayout>

@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layer-list xmlns:android="http://schemas.android.com/apk/res/android">
+<!--    <item android:id="@android:id/background">-->
+<!--        <shape>-->
+<!--            <corners android:radius="5dp" />-->
+<!--            <solid android:color="#C9C7C7" />-->
+<!--        </shape>-->
+<!--    </item>-->
+
+<!--    <item android:id="@android:id/secondaryProgress">-->
+<!--        <clip>-->
+<!--            <shape>-->
+<!--                <corners android:radius="5dp" />-->
+<!--                <solid android:color="@color/colorAccent" />-->
+<!--            </shape>-->
+<!--        </clip>-->
+<!--    </item>-->
+
+<!--    <item android:id="@android:id/progress">-->
+<!--        <clip>-->
+<!--            <shape>-->
+<!--                <corners android:radius="5dp" />-->
+<!--                <solid android:color="@color/colorAccent" />-->
+<!--            </shape>-->
+<!--        </clip>-->
+<!--    </item>-->
+
+
+    <item android:id="@android:id/background" android:state_focused="true">
+        <shape>
+            <corners android:radius="5dp"/>
+            <solid android:color="#C9C7C7"/>
+        </shape>
+    </item>
+
+    <item android:id="@android:id/progress" android:state_focused="true">
+        <clip>
+            <shape>
+                <corners android:radius="5dp"/>
+                <solid android:color="#4DA0E8" />
+            </shape>
+        </clip>
+    </item>
+</layer-list>

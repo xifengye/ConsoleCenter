@@ -1,0 +1,28 @@
+<resources>
+    <string name="app_name">ConsoleCenter</string>
+    <string name="left_arrow">\u2190</string>
+    <string name="up_arrow">\u2191</string>
+    <string name="down_arrow">\u2193</string>
+    <string name="right_arrow">\u2192</string>
+    <string name="horizontal_expand_arrow">\u2190  \u2192</string>
+    <string name="horizontal_shrink_arrow">\u2192  \u2190</string>
+    <string name="vertical_expand_arrow">\u2192  \u2190</string>
+    <string name="vertical_shrink_arrow">\u2192  \u2190</string>
+    <string name="top">TOP</string>
+    <string name="bottom">BOTTOM</string>
+    <string name="left">LEFT</string>
+    <string name="right">RIGHT</string>
+    <string name="vertex_default">0,0</string>
+    <string name="suofang">Zoom</string>
+    <string name="daoying">Flip</string>
+    <string name="xiaozheng">Keystone</string>
+    <string name="moren">Restore</string>
+    <string name="btn_down_right">Right_Down</string>
+    <string name="btn_down_left">Left_Down</string>
+    <string name="btn_top_right">Right_Up</string>
+    <string name="btn_top_left">Left_Up</string>
+
+    <string name="cmd">ConsoleCenter</string>
+
+
+</resources>

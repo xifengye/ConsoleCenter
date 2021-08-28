@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white"
+    android:orientation="vertical">
+
+    <TextView
+        android:id="@+id/tv_title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="20dp"
+        android:text="@string/suofang"
+        android:textColor="#4DA0E8"
+        android:textSize="30sp" />
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:layout_marginLeft="40dp"
+        android:layout_marginTop="50dp"
+        android:layout_marginRight="40dp"
+        android:gravity="center"
+        android:orientation="horizontal">
+
+        <SeekBar
+            android:id="@+id/seekbar_top"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:max="5"
+            android:progressDrawable="@drawable/seekbar_shape"
+            android:thumb="@drawable/selector_thumb_bar"
+            android:maxHeight="3dp"
+            android:minHeight="3dp" />
+        <!--        android:secondaryProgress="70"-->
+    </LinearLayout>
+
+    <Button
+        android:id="@+id/btn_moren"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:focusable="true"
+        android:layout_marginTop="50dp"
+        android:background="@drawable/border_line_while"
+        android:text="@string/moren"
+        android:textColor="@color/white" />
+
+</LinearLayout>

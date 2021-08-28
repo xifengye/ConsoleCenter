@@ -1,0 +1,28 @@
+<resources>
+    <string name="app_name">控制台中心</string>
+    <string name="left_arrow">\u2190</string>
+    <string name="up_arrow">\u2191</string>
+    <string name="down_arrow">\u2193</string>
+    <string name="right_arrow">\u2192</string>
+    <string name="horizontal_expand_arrow">\u2190  \u2192</string>
+    <string name="horizontal_shrink_arrow">\u2192  \u2190</string>
+    <string name="vertical_expand_arrow">\u2192  \u2190</string>
+    <string name="vertical_shrink_arrow">\u2192  \u2190</string>
+    <string name="top">TOP</string>
+    <string name="bottom">BOTTOM</string>
+    <string name="left">LEFT</string>
+    <string name="right">RIGHT</string>
+    <string name="vertex_default">0,0</string>
+    <string name="suofang">缩放</string>
+    <string name="daoying">倒置投影</string>
+    <string name="xiaozheng">梯形校正</string>
+    <string name="moren">恢复默认设置</string>
+    <string name="btn_down_right">右下校正</string>
+    <string name="btn_down_left">左下校正</string>
+    <string name="btn_top_right">右上校正</string>
+    <string name="btn_top_left">左上校正</string>
+
+    <string name="cmd">控制台中心</string>
+
+
+</resources>

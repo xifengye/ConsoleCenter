@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.cptp.console"
+	android:versionCode="1"
+    android:versionName="1.0.0"
+    android:sharedUserId="android.uid.system"
+	>
+
+    <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
+    <uses-permission android:name="android.permission.WRITE_SETTINGS"/>
+    <uses-sdk
+        android:targetSdkVersion="23"
+        android:maxSdkVersion="23" />
+
+    <application
+        android:allowBackup="true"
+        android:icon="@drawable/ic_launcher"
+        android:label="@string/app_name"
+        android:supportsRtl="true"
+        android:theme="@style/AppTheme">
+        <activity android:name="com.cptp.console.HomeActivity">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <action android:name="android.intent.action.VIEW" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <activity android:name="com.cptp.console.ZoomActivity">
+        </activity>
+        <activity android:name="com.cptp.console.TixingActivity">
+        </activity>
+<!--        <activity android:name=".MainActivity">-->
+<!--        </activity>-->
+
+        <service
+            android:name="com.cptp.console.KeystoneService"
+            android:enabled="true"
+            android:exported="true" />
+
+        <receiver
+            android:name="com.cptp.console.KeystoneReceiver"
+            android:enabled="true"
+            android:exported="true">
+            <intent-filter>
+                <action android:name="android.intent.action.BOOT_COMPLETED" />
+                <action android:name="com.rockchip.keystone.START" />
+            </intent-filter>
+        </receiver>
+    </application>
+
+</manifest>
