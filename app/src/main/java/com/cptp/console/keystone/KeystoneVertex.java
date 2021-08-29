@@ -40,8 +40,8 @@ public class KeystoneVertex {
     public void setScreenWidthHeight(Context context) {
         mScreenWidth = context.getResources().getDisplayMetrics().widthPixels;
         mScreenHeight = context.getResources().getDisplayMetrics().heightPixels;
-        mMaxDirectY = mScreenHeight / 5;
-        mMaxDirectX = mScreenWidth / 5;
+        mMaxDirectY = 50;//mScreenHeight / 5;
+        mMaxDirectX = 50;//mScreenWidth / 5;
     }
 
     public void getAllKeystoneVertex() {
@@ -325,6 +325,7 @@ public class KeystoneVertex {
         directY += 1;
         if (directY > mMaxDirectY) {
             directY = mMaxDirectY;
+            return;
         }
         if (directY > 0) {
             setDirectTopLeftX(mTopLeft.x + 1);
@@ -343,10 +344,11 @@ public class KeystoneVertex {
 
     public void directDown(SharedPreferences sp) {
         directY -= 1;
-        if (directY < -mMaxDirectY) {
+        if (directY < (-mMaxDirectY)) {
             directY = -mMaxDirectY;
+            return;
         }
-        if (directY > 0) {
+        if (directY >=0) {
             setDirectTopLeftX(mTopLeft.x - 1);
             setDirectTopLeftY(mTopLeft.y - 1);
             setDirectTopRightX(mTopRight.x + 1);
@@ -365,8 +367,9 @@ public class KeystoneVertex {
         directX -= 1;
         if (directX < -mMaxDirectX) {
             directX = -mMaxDirectX;
+            return;
         }
-        if (directX > 0) {
+        if (directX >= 0) {
             setDirectTopLeftX(mTopLeft.x - 1);
             setDirectBottomLeftX(mBottomLeft.x - 1);
             setDirectTopLeftY(mTopLeft.y - 1);
@@ -385,6 +388,7 @@ public class KeystoneVertex {
         directX += 1;
         if (directX > mMaxDirectX) {
             directX = mMaxDirectX;
+            return;
         }
         if (directX > 0) {
             setDirectTopLeftX(mTopLeft.x + 1);
@@ -401,85 +405,116 @@ public class KeystoneVertex {
         updateSave(sp);
     }
 
-    private void setDirectTopLeftX(int value) {
+    private boolean setDirectTopLeftX(int value) {
+        boolean getMax = false;
         if (value > mMaxDirectX) {
             value = mMaxDirectX;
+            getMax = true;
         }
         if (value < -mMaxDirectX) {
             value = -mMaxDirectX;
+            getMax = true;
         }
         mTopLeft.x = value;
+        return getMax;
     }
 
-    private void setDirectTopLeftY(int value) {
+    private boolean setDirectTopLeftY(int value) {
+        boolean getMax = false;
         if (value > mMaxDirectY) {
             value = mMaxDirectY;
+            getMax = true;
         }
         if (value < -mMaxDirectY) {
             value = -mMaxDirectY;
+            getMax = true;
         }
         mTopLeft.y = value;
+        return getMax;
     }
 
-    private void setDirectBottomLeftX(int value) {
+    private boolean setDirectBottomLeftX(int value) {
+        boolean getMax = false;
         if (value > mMaxDirectX) {
             value = mMaxDirectX;
+            getMax = true;
         }
         if (value < -mMaxDirectX) {
             value = -mMaxDirectX;
+            getMax = true;
         }
         mBottomLeft.x = value;
+        return getMax;
     }
 
-    private void setDirectBottomLeftY(int value) {
+    private boolean setDirectBottomLeftY(int value) {
+        boolean getMax = false;
         if (value > mMaxDirectY) {
             value = mMaxDirectY;
+            getMax = true;
         }
         if (value < -mMaxDirectY) {
             value = -mMaxDirectY;
+            getMax = true;
         }
         mBottomLeft.y = value;
+        return getMax;
     }
 
-    private void setDirectTopRightX(int value) {
-
+    private boolean setDirectTopRightX(int value) {
+        boolean getMax = false;
         if (value > mMaxDirectX) {
             value = mMaxDirectX;
+            getMax = true;
         }
         if (value < -mMaxDirectX) {
             value = -mMaxDirectX;
+            getMax = true;
         }
         mTopRight.x = value;
+        return getMax;
     }
 
-    private void setDirectTopRightY(int value) {
+    private boolean setDirectTopRightY(int value) {
+        boolean getMax = false;
         if (value > mMaxDirectY) {
             value = mMaxDirectY;
+            getMax = true;
         }
         if (value < -mMaxDirectY) {
             value = -mMaxDirectY;
+            getMax = true;
         }
         mTopRight.y = value;
+        return getMax;
     }
 
-    private void setDirectBottomRightX(int value) {
+    private boolean setDirectBottomRightX(int value) {
+        boolean getMax = false;
         if (value > mMaxDirectX) {
             value = mMaxDirectX;
+            getMax = true;
         }
         if (value < -mMaxDirectX) {
             value = -mMaxDirectX;
+            getMax = true;
         }
         mBottomRight.x = value;
+        return getMax;
     }
 
-    private void setDirectBottomRightY(int value) {
+    private boolean setDirectBottomRightY(int value) {
+        boolean getMax = false;
         if (value > mMaxDirectY) {
             value = mMaxDirectY;
+            getMax = true;
         }
         if (value < -mMaxDirectY) {
             value = -mMaxDirectY;
+            getMax = true;
         }
         mBottomRight.y = value;
+        return getMax;
     }
 }
 
