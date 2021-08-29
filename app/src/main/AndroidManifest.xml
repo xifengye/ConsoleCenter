@@ -29,8 +29,8 @@
         </activity>
         <activity android:name="com.cptp.console.ZoomActivity">
         </activity>
-        <activity android:name="com.cptp.console.TixingActivity">
-        </activity>
+        <activity android:name="com.cptp.console.TixingActivity"/>
+        <activity android:name="com.cptp.console.Tixing1Activity"/>
 <!--        <activity android:name=".MainActivity">-->
 <!--        </activity>-->
 

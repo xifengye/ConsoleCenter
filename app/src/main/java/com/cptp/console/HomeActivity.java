@@ -28,6 +28,7 @@ public class HomeActivity extends Activity {
     static String DB_HWROTATION_VALUE = "db_hwrotation";
     static String DB_GAMMA_VALUE = "db_gamma";
     private Button btn_tixing;
+    private Button btn_tixing1;
     //private Button btn_suofang;
     private Button btn_daozhi;
     private SeekBar mSeekbarLiangdu;
@@ -94,6 +95,14 @@ public class HomeActivity extends Activity {
                 startActivity(new Intent(HomeActivity.this, TixingActivity.class));
             }
         });
+        btn_tixing1 = (Button) findViewById(R.id.btn_tixing1);
+        btn_tixing1.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(HomeActivity.this, Tixing1Activity.class));
+            }
+        });
+        btn_tixing1.requestFocus();
         mSeekbarLiangdu = (SeekBar) findViewById(R.id.seekbar_liangdu);
 
         WindowManager.LayoutParams localLayoutParams = getWindow().getAttributes();

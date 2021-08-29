@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.SeekBar;
@@ -74,6 +75,7 @@ public class TixingActivity extends Activity implements SeekBar.OnSeekBarChangeL
             case R.id.seekbar_top_left:
                 KeystoneDemo.topLeft(value);
                 editor.putInt(TOPLEFT,progress);
+                Log.d("Stone","value="+value+",progress="+progress);
                 break;
             case R.id.seekbar_top_right:
                 KeystoneDemo.topRight(value);
