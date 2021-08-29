@@ -30,8 +30,8 @@ public class KeystoneVertex {
     private String spKey;
     private int directY;
     private int directX;
-    private int mMaxDirectY = 30;
-    private int mMaxDirectX = 20;
+    private int mMaxDirectY = 60;
+    private int mMaxDirectX = 40;
 
     public void setSpKey(String spKey) {
         this.spKey = spKey;
@@ -327,15 +327,15 @@ public class KeystoneVertex {
             directY = mMaxDirectY;
         }
         if (directY > 0) {
-            mTopLeft.y = directY;
-            mTopRight.y = directY;
-            mTopLeft.x = directY;
-            mTopRight.x = -directY;
+            setDirectTopLeftX(mTopLeft.x + 1);
+            setDirectTopLeftY(mTopLeft.y + 1);
+            setDirectTopRightX(mTopRight.x - 1);
+            setDirectTopRightY(mTopRight.y + 1);
         } else {
-            mBottomLeft.y = directY;
-            mBottomRight.y = directY;
-            mBottomLeft.x = -directY;
-            mBottomRight.x = directY;
+            setDirectBottomLeftX(mBottomLeft.x - 1);
+            setDirectBottomLeftY(mBottomLeft.y + 1);
+            setDirectBottomRightX(mBottomRight.x + 1);
+            setDirectBottomRightY(mBottomRight.y + 1);
         }
         updateAllKeystoneVertex();
         updateSave(sp);
@@ -347,15 +347,15 @@ public class KeystoneVertex {
             directY = -mMaxDirectY;
         }
         if (directY > 0) {
-            mTopLeft.y = directY;
-            mTopRight.y = directY;
-            mTopLeft.x = directY;
-            mTopRight.x = -directY;
+            setDirectTopLeftX(mTopLeft.x - 1);
+            setDirectTopLeftY(mTopLeft.y - 1);
+            setDirectTopRightX(mTopRight.x + 1);
+            setDirectTopRightY(mTopRight.y - 1);
         } else {
-            mBottomLeft.y = directY;
-            mBottomRight.y = directY;
-            mBottomLeft.x = -directY;
-            mBottomRight.x = directY;
+            setDirectBottomLeftX(mBottomLeft.x + 1);
+            setDirectBottomLeftY(mBottomLeft.y - 1);
+            setDirectBottomRightX(mBottomRight.x - 1);
+            setDirectBottomRightY(mBottomRight.y - 1);
         }
         updateAllKeystoneVertex();
         updateSave(sp);
@@ -367,15 +367,15 @@ public class KeystoneVertex {
             directX = -mMaxDirectX;
         }
         if (directX > 0) {
-            mTopLeft.x = directX;
-            mBottomLeft.x = directX;
-            mTopLeft.y = directX;
-            mBottomLeft.y = -directX;
+            setDirectTopLeftX(mTopLeft.x - 1);
+            setDirectBottomLeftX(mBottomLeft.x - 1);
+            setDirectTopLeftY(mTopLeft.y - 1);
+            setDirectBottomLeftY(mBottomLeft.y + 1);
         } else {
-            mTopRight.x = directX;
-            mBottomRight.x = directX;
-            mTopRight.y = -directX;
-            mBottomRight.y = directX;
+            setDirectTopRightX(mTopRight.x - 1);
+            setDirectBottomRightX(mBottomRight.x - 1);
+            setDirectTopRightY(mTopRight.y + 1);
+            setDirectBottomRightY(mBottomRight.y - 1);
         }
         updateAllKeystoneVertex();
         updateSave(sp);
@@ -387,18 +387,99 @@ public class KeystoneVertex {
             directX = mMaxDirectX;
         }
         if (directX > 0) {
-            mTopLeft.x = directX;
-            mBottomLeft.x = directX;
-            mTopLeft.y = directX;
-            mBottomLeft.y = -directX;
+            setDirectTopLeftX(mTopLeft.x + 1);
+            setDirectTopLeftY(mTopLeft.y + 1);
+            setDirectBottomLeftX(mBottomLeft.x + 1);
+            setDirectBottomLeftY(mBottomLeft.y - 1);
         } else {
-            mTopRight.x = directX;
-            mBottomRight.x = directX;
-            mTopRight.y = -directX;
-            mBottomRight.y = directX;
+            setDirectTopRightX(mTopRight.x + 1);
+            setDirectTopRightY(mTopRight.y - 1);
+            setDirectBottomRightX(mBottomRight.x + 1);
+            setDirectBottomRightY(mBottomRight.y + 1);
         }
         updateAllKeystoneVertex();
         updateSave(sp);
+    }
+
+    private void setDirectTopLeftX(int value) {
+        if (value > mMaxDirectX) {
+            value = mMaxDirectX;
+        }
+        if (value < -mMaxDirectX) {
+            value = -mMaxDirectX;
+        }
+        mTopLeft.x = value;
+    }
+
+    private void setDirectTopLeftY(int value) {
+        if (value > mMaxDirectY) {
+            value = mMaxDirectY;
+        }
+        if (value < -mMaxDirectY) {
+            value = -mMaxDirectY;
+        }
+        mTopLeft.y = value;
+    }
+
+    private void setDirectBottomLeftX(int value) {
+        if (value > mMaxDirectX) {
+            value = mMaxDirectX;
+        }
+        if (value < -mMaxDirectX) {
+            value = -mMaxDirectX;
+        }
+        mBottomLeft.x = value;
+    }
+
+    private void setDirectBottomLeftY(int value) {
+        if (value > mMaxDirectY) {
+            value = mMaxDirectY;
+        }
+        if (value < -mMaxDirectY) {
+            value = -mMaxDirectY;
+        }
+        mBottomLeft.y = value;
+    }
+
+    private void setDirectTopRightX(int value) {
+
+        if (value > mMaxDirectX) {
+            value = mMaxDirectX;
+        }
+        if (value < -mMaxDirectX) {
+            value = -mMaxDirectX;
+        }
+        mTopRight.x = value;
+    }
+
+    private void setDirectTopRightY(int value) {
+        if (value > mMaxDirectY) {
+            value = mMaxDirectY;
+        }
+        if (value < -mMaxDirectY) {
+            value = -mMaxDirectY;
+        }
+        mTopRight.y = value;
+    }
+
+    private void setDirectBottomRightX(int value) {
+        if (value > mMaxDirectX) {
+            value = mMaxDirectX;
+        }
+        if (value < -mMaxDirectX) {
+            value = -mMaxDirectX;
+        }
+        mBottomRight.x = value;
+    }
+
+    private void setDirectBottomRightY(int value) {
+        if (value > mMaxDirectY) {
+            value = mMaxDirectY;
+        }
+        if (value < -mMaxDirectY) {
+            value = -mMaxDirectY;
+        }
+        mBottomRight.y = value;
     }
 }
 
