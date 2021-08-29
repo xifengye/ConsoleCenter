@@ -10,6 +10,7 @@ import com.google.gson.Gson;
 public class KeystoneVertex {
     public static String STONE_VALUE_FOR_FOUR = "STONE_VALUE_FOR_FOUR";
     public static String STONE_VALUE_FOR_ZOOM = "STONE_VALUE_FOR_ZOOM";
+    public static String STONE_VALUE_FOR_DIRECTION = "STONE_VALUE_FOR_DIRECTION";
 
 
     public static final String PROP_KEYSTONE_TOP_LEFT = "persist.sys.keystone.lt";
@@ -27,6 +28,10 @@ public class KeystoneVertex {
     private int mScreenWidth = 200;
     private int mScreenHeight = 200;
     private String spKey;
+    private int directY;
+    private int directX;
+    private int mMaxDirectY = 30;
+    private int mMaxDirectX = 20;
 
     public void setSpKey(String spKey) {
         this.spKey = spKey;
@@ -35,6 +40,8 @@ public class KeystoneVertex {
     public void setScreenWidthHeight(Context context) {
         mScreenWidth = context.getResources().getDisplayMetrics().widthPixels;
         mScreenHeight = context.getResources().getDisplayMetrics().heightPixels;
+        mMaxDirectY = mScreenHeight / 5;
+        mMaxDirectX = mScreenWidth / 5;
     }
 
     public void getAllKeystoneVertex() {
@@ -269,6 +276,8 @@ public class KeystoneVertex {
     }
 
     public void reset(SharedPreferences sp) {
+        directX = 0;
+        directY = 0;
         mTopLeft.x = 0;
         mTopLeft.y = 0;
         mTopRight.x = 0;
@@ -308,6 +317,86 @@ public class KeystoneVertex {
         mBottomLeft.y = -yScale;
         mBottomRight.x = -xScale;
         mBottomRight.y = -yScale;
+        updateAllKeystoneVertex();
+        updateSave(sp);
+    }
+
+    public void directUp(SharedPreferences sp) {
+        directY += 1;
+        if (directY > mMaxDirectY) {
+            directY = mMaxDirectY;
+        }
+        if (directY > 0) {
+            mTopLeft.y = directY;
+            mTopRight.y = directY;
+            mTopLeft.x = directY;
+            mTopRight.x = -directY;
+        } else {
+            mBottomLeft.y = directY;
+            mBottomRight.y = directY;
+            mBottomLeft.x = -directY;
+            mBottomRight.x = directY;
+        }
+        updateAllKeystoneVertex();
+        updateSave(sp);
+    }
+
+    public void directDown(SharedPreferences sp) {
+        directY -= 1;
+        if (directY < -mMaxDirectY) {
+            directY = -mMaxDirectY;
+        }
+        if (directY > 0) {
+            mTopLeft.y = directY;
+            mTopRight.y = directY;
+            mTopLeft.x = directY;
+            mTopRight.x = -directY;
+        } else {
+            mBottomLeft.y = directY;
+            mBottomRight.y = directY;
+            mBottomLeft.x = -directY;
+            mBottomRight.x = directY;
+        }
+        updateAllKeystoneVertex();
+        updateSave(sp);
+    }
+
+    public void directRight(SharedPreferences sp) {
+        directX -= 1;
+        if (directX < -mMaxDirectX) {
+            directX = -mMaxDirectX;
+        }
+        if (directX > 0) {
+            mTopLeft.x = directX;
+            mBottomLeft.x = directX;
+            mTopLeft.y = directX;
+            mBottomLeft.y = -directX;
+        } else {
+            mTopRight.x = directX;
+            mBottomRight.x = directX;
+            mTopRight.y = -directX;
+            mBottomRight.y = directX;
+        }
+        updateAllKeystoneVertex();
+        updateSave(sp);
+    }
+
+    public void directLeft(SharedPreferences sp) {
+        directX += 1;
+        if (directX > mMaxDirectX) {
+            directX = mMaxDirectX;
+        }
+        if (directX > 0) {
+            mTopLeft.x = directX;
+            mBottomLeft.x = directX;
+            mTopLeft.y = directX;
+            mBottomLeft.y = -directX;
+        } else {
+            mTopRight.x = directX;
+            mBottomRight.x = directX;
+            mTopRight.y = -directX;
+            mBottomRight.y = directX;
+        }
         updateAllKeystoneVertex();
         updateSave(sp);
     }

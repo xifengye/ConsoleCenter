@@ -17,7 +17,6 @@ public class ZoomActivity extends BaseActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_zoom2);
         seekBar = findViewById(R.id.seekBar);
         tvScale = findViewById(R.id.tvScale);
         seekBar.setMax(100);
@@ -44,11 +43,6 @@ public class ZoomActivity extends BaseActivity {
     @Override
     protected String getStoneKey() {
         return STONE_VALUE_FOR_ZOOM;
-    }
-
-    @Override
-    public void pressMenu() {
-        mKeystoneVertex.reset(sp);
     }
 
     @Override
@@ -82,6 +76,11 @@ public class ZoomActivity extends BaseActivity {
     @Override
     protected void pressLeft() {
 
+    }
+
+    @Override
+    protected int getLayoutId() {
+        return R.layout.activity_zoom2;
     }
 
     public static void start(Context context) {

@@ -21,7 +21,6 @@ public class TixingActivity extends BaseActivity {
     private Button btnLeftBottom;
     private Button btnRightTop;
     private Button btnRightBottom;
-    View imageView;
 
     private Button[] btns = new Button[4];
 
@@ -32,7 +31,6 @@ public class TixingActivity extends BaseActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_tixing_1);
         initData();
         initView();
     }
@@ -44,7 +42,6 @@ public class TixingActivity extends BaseActivity {
 
 
     private void initView() {
-        imageView = findViewById(R.id.imageView);
 
         tvLeftTop = findViewById(R.id.tvLeftTop);
         tvLeftBottom = findViewById(R.id.tvLeftBottom);
@@ -83,10 +80,7 @@ public class TixingActivity extends BaseActivity {
         btns[mSelectButtonIndex].setSelected(true);
     }
 
-    @Override
-    public void pressMenu() {
-        mKeystoneVertex.reset(sp);
-    }
+
 
     @Override
     public void pressDown() {
@@ -138,6 +132,11 @@ public class TixingActivity extends BaseActivity {
         } else if (btns[mSelectButtonIndex] == btnRightBottom) {
             mKeystoneVertex.rightBottomDoLeft(sp);
         }
+    }
+
+    @Override
+    protected int getLayoutId() {
+        return R.layout.activity_tixing_1;
     }
 
     private void updateTextValue(){

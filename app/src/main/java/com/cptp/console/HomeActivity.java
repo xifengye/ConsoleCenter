@@ -13,6 +13,7 @@ import android.widget.SeekBar;
 
 import com.cptp.console.keystone.KeystoneDemo;
 import com.cptp.console.keystone.SystemProperties;
+import com.cptp.console.new_iml.DirectionActivity;
 import com.cptp.console.new_iml.TixingActivity;
 import com.cptp.console.new_iml.ZoomActivity;
 import com.cptp.console.utils.AdjustColorCompute;
@@ -79,6 +80,13 @@ public class HomeActivity extends Activity {
             @Override
             public void onClick(View v) {
                 ZoomActivity.start(HomeActivity.this);
+            }
+        });
+        View btn_correction = (Button) findViewById(R.id.btn_correction);
+        btn_correction.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                DirectionActivity.start(HomeActivity.this);
             }
         });
         btn_daozhi = (Button) findViewById(R.id.btn_daozhi);

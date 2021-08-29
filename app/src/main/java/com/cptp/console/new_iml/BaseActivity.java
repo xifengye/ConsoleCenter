@@ -7,9 +7,11 @@ import android.os.Bundle;
 import android.text.TextUtils;
 import android.util.Log;
 import android.view.KeyEvent;
+import android.widget.ImageView;
 
 import androidx.annotation.Nullable;
 
+import com.cptp.console.R;
 import com.cptp.console.keystone.KeystoneVertex;
 import com.google.gson.Gson;
 
@@ -25,10 +27,13 @@ public abstract class BaseActivity extends Activity {
 
     protected KeystoneVertex mKeystoneVertex;
     protected SharedPreferences sp;
+    protected ImageView imageView;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        setContentView(getLayoutId());
+        imageView = findViewById(R.id.imageView);
         sp = getSharedPreferences(sSharedPreferencesKey, Context.MODE_PRIVATE);
         initData();
     }
@@ -63,11 +68,14 @@ public abstract class BaseActivity extends Activity {
         } else if (keyCode == KeyEvent.KEYCODE_MENU) {
             pressMenu();
         }
+        imageView.invalidate();
         Log.e("Stone", mKeystoneVertex.toString());
         return super.onKeyDown(keyCode, event);
     }
 
-    protected abstract void pressMenu();
+    public void pressMenu() {
+        mKeystoneVertex.reset(sp);
+    }
 
     protected abstract void pressEnter();
 
@@ -78,5 +86,7 @@ public abstract class BaseActivity extends Activity {
     protected abstract void pressRight();
 
     protected abstract void pressLeft();
+
+    protected abstract int getLayoutId();
 
 }
