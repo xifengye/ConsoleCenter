@@ -8,7 +8,8 @@ import com.google.gson.Gson;
 
 
 public class KeystoneVertex {
-    public static String STONE_VALUE = "STONE_VALUE_FOR_FOUR";
+    public static String STONE_VALUE_FOR_FOUR = "STONE_VALUE_FOR_FOUR";
+    public static String STONE_VALUE_FOR_ZOOM = "STONE_VALUE_FOR_ZOOM";
 
 
     public static final String PROP_KEYSTONE_TOP_LEFT = "persist.sys.keystone.lt";
@@ -23,12 +24,17 @@ public class KeystoneVertex {
     public Vertex mTopRight;
     public Vertex mBottomLeft;
     public Vertex mBottomRight;
-    private static int MAX_TOP_LEFT_Y = 200;
-    private static int MAX_TOP_LEFT_X = 200;
+    private int mScreenWidth = 200;
+    private int mScreenHeight = 200;
+    private String spKey;
+
+    public void setSpKey(String spKey) {
+        this.spKey = spKey;
+    }
 
     public void setScreenWidthHeight(Context context) {
-        MAX_TOP_LEFT_X = context.getResources().getDisplayMetrics().widthPixels;
-        MAX_TOP_LEFT_Y = context.getResources().getDisplayMetrics().heightPixels;
+        mScreenWidth = context.getResources().getDisplayMetrics().widthPixels;
+        mScreenHeight = context.getResources().getDisplayMetrics().heightPixels;
     }
 
     public void getAllKeystoneVertex() {
@@ -71,8 +77,8 @@ public class KeystoneVertex {
      */
     public void leftTopDoDown(SharedPreferences sp) {
         mTopLeft.y += 5;
-        if (mTopLeft.y > MAX_TOP_LEFT_Y) {
-            mTopLeft.y = MAX_TOP_LEFT_Y;
+        if (mTopLeft.y > mScreenHeight) {
+            mTopLeft.y = mScreenHeight;
         }
         SystemProperties.set(PROP_KEYSTONE_TOP_LEFT, mTopLeft.toString());
         SystemProperties.set(PROP_KEYSTONE_UPDATE, "1");
@@ -97,8 +103,8 @@ public class KeystoneVertex {
      */
     public void leftTopDoRight(SharedPreferences sp) {
         mTopLeft.x += 5;
-        if (mTopLeft.x > MAX_TOP_LEFT_X) {
-            mTopLeft.x = MAX_TOP_LEFT_X;
+        if (mTopLeft.x > mScreenWidth) {
+            mTopLeft.x = mScreenWidth;
         }
         SystemProperties.set(PROP_KEYSTONE_TOP_LEFT, mTopLeft.toString());
         SystemProperties.set(PROP_KEYSTONE_UPDATE, "1");
@@ -123,8 +129,8 @@ public class KeystoneVertex {
      */
     public void rightTopDoDown(SharedPreferences sp) {
         mTopRight.y += 5;
-        if (mTopRight.y > MAX_TOP_LEFT_Y) {
-            mTopRight.y = MAX_TOP_LEFT_Y;
+        if (mTopRight.y > mScreenHeight) {
+            mTopRight.y = mScreenHeight;
         }
         SystemProperties.set(PROP_KEYSTONE_TOP_RIGHT, mTopRight.toString());
         SystemProperties.set(PROP_KEYSTONE_UPDATE, "1");
@@ -136,8 +142,8 @@ public class KeystoneVertex {
      */
     public void rightTopDoLeft(SharedPreferences sp) {
         mTopRight.x -= 5;
-        if (mTopRight.x < -MAX_TOP_LEFT_X) {
-            mTopRight.x = -MAX_TOP_LEFT_X;
+        if (mTopRight.x < -mScreenWidth) {
+            mTopRight.x = -mScreenWidth;
         }
         SystemProperties.set(PROP_KEYSTONE_TOP_RIGHT, mTopRight.toString());
         SystemProperties.set(PROP_KEYSTONE_UPDATE, "1");
@@ -162,8 +168,8 @@ public class KeystoneVertex {
      */
     public void leftBottomDoUp(SharedPreferences sp) {
         mBottomLeft.y -= 5;
-        if (mBottomLeft.y < -MAX_TOP_LEFT_Y) {
-            mBottomLeft.y = -MAX_TOP_LEFT_Y;
+        if (mBottomLeft.y < -mScreenHeight) {
+            mBottomLeft.y = -mScreenHeight;
         }
         SystemProperties.set(PROP_KEYSTONE_BOTTOM_LEFT, mBottomLeft.toString());
         SystemProperties.set(PROP_KEYSTONE_UPDATE, "1");
@@ -201,8 +207,8 @@ public class KeystoneVertex {
      */
     public void leftBottomDoRight(SharedPreferences sp) {
         mBottomLeft.x += 5;
-        if (mBottomLeft.x > MAX_TOP_LEFT_X) {
-            mBottomLeft.x = MAX_TOP_LEFT_X;
+        if (mBottomLeft.x > mScreenWidth) {
+            mBottomLeft.x = mScreenWidth;
         }
         SystemProperties.set(PROP_KEYSTONE_BOTTOM_LEFT, mBottomLeft.toString());
         SystemProperties.set(PROP_KEYSTONE_UPDATE, "1");
@@ -215,8 +221,8 @@ public class KeystoneVertex {
     public void rightBottomDoUp(SharedPreferences sp) {
 
         mBottomRight.y -= 5;
-        if (mBottomRight.y < -MAX_TOP_LEFT_Y) {
-            mBottomRight.y = -MAX_TOP_LEFT_Y;
+        if (mBottomRight.y < -mScreenHeight) {
+            mBottomRight.y = -mScreenHeight;
         }
         SystemProperties.set(PROP_KEYSTONE_BOTTOM_RIGHT, mBottomRight.toString());
         SystemProperties.set(PROP_KEYSTONE_UPDATE, "1");
@@ -241,8 +247,8 @@ public class KeystoneVertex {
      */
     public void rightBottomDoLeft(SharedPreferences sp) {
         mBottomRight.x -= 5;
-        if (mBottomRight.x < -MAX_TOP_LEFT_X) {
-            mBottomRight.x = -MAX_TOP_LEFT_X;
+        if (mBottomRight.x < -mScreenWidth) {
+            mBottomRight.x = -mScreenWidth;
         }
         SystemProperties.set(PROP_KEYSTONE_BOTTOM_RIGHT, mBottomRight.toString());
         SystemProperties.set(PROP_KEYSTONE_UPDATE, "1");
@@ -278,7 +284,7 @@ public class KeystoneVertex {
     private void updateSave(SharedPreferences sp) {
         Gson gson = new Gson();
         String json = gson.toJson(this);
-        sp.edit().putString(STONE_VALUE, json).apply();
+        sp.edit().putString(spKey, json).apply();
     }
 
     @Override
@@ -289,6 +295,21 @@ public class KeystoneVertex {
                 ", \"mBottomLeft\":" + mBottomLeft +
                 ", \"mBottomRight\":" + mBottomRight +
                 '}';
+    }
+
+    public void zoom(SharedPreferences sp, int progress) {
+        int xScale = (int) (mScreenWidth * progress / 100.0f) / 2;
+        int yScale = (int) (mScreenHeight * progress / 100.0f) / 2;
+        mTopLeft.x = xScale;
+        mTopLeft.y = yScale;
+        mTopRight.x = -xScale;
+        mTopRight.y = yScale;
+        mBottomLeft.x = xScale;
+        mBottomLeft.y = -yScale;
+        mBottomRight.x = -xScale;
+        mBottomRight.y = -yScale;
+        updateAllKeystoneVertex();
+        updateSave(sp);
     }
 }
 

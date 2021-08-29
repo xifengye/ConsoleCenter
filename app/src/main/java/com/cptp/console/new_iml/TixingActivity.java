@@ -1,25 +1,17 @@
-package com.cptp.console;
+package com.cptp.console.new_iml;
 
-import android.app.Activity;
-import android.content.Context;
-import android.content.SharedPreferences;
 import android.os.Bundle;
-import android.text.TextUtils;
 import android.util.Log;
 import android.view.KeyEvent;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 
-import com.cptp.console.keystone.KeystoneDemo;
-import com.cptp.console.keystone.KeystoneVertex;
-import com.google.gson.Gson;
+import com.cptp.console.R;
 
-import static com.cptp.console.keystone.KeystoneDemo.KEYSTONE_CORRECTION_DEFAULT;
-import static com.cptp.console.keystone.KeystoneDemo.KEYSTONE_CORRECTION_STEP;
+import static com.cptp.console.keystone.KeystoneVertex.STONE_VALUE_FOR_FOUR;
 
-public class Tixing1Activity extends Activity {
-    static final String sSharedPreferencesKey = "com.cptp.console.prefs";
+public class TixingActivity extends BaseActivity {
     private static final int MIN_LEFT_TOP = -100;
     private TextView tvLeftTop;
     private TextView tvLeftBottom;
@@ -31,45 +23,25 @@ public class Tixing1Activity extends Activity {
     private Button btnRightBottom;
     View imageView;
 
-//    private int leftTopY;
-//    private int leftTopX;
-//    private int rightTop;
-//    private int leftBottom;
-//    private int rightBottom;
-
     private Button[] btns = new Button[4];
 
     private int mSelectButtonIndex;
-    private SharedPreferences sp;
-//    public static String TOPLEFT = "TOPLEFT";
-//    public static String TOPRIGHT = "TOPRIGHT";
-//    public static String DOWNLEFT = "DOWNLEFT";
-//    public static String DOWNRIGHT = "DOWNRIGHT";
 
-    public static String STONE_VALUE = "STONE_VALUE_FOR_FOUR";
 
-    private KeystoneVertex mKeystoneVertex;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_tixing_1);
-        sp = getSharedPreferences(sSharedPreferencesKey, Context.MODE_PRIVATE);
         initData();
         initView();
     }
 
-    private void initData() {
-        String keystoneString = sp.getString(STONE_VALUE, "");
-        if (TextUtils.isEmpty(keystoneString)) {
-            mKeystoneVertex = new KeystoneVertex();
-            mKeystoneVertex.getAllKeystoneVertex();
-        } else {
-            Gson gson = new Gson();
-            mKeystoneVertex = gson.fromJson(keystoneString, KeystoneVertex.class);
-        }
-        mKeystoneVertex.setScreenWidthHeight(getApplicationContext());
+    @Override
+    protected String getStoneKey() {
+        return STONE_VALUE_FOR_FOUR;
     }
+
 
     private void initView() {
         imageView = findViewById(R.id.imageView);
@@ -90,34 +62,19 @@ public class Tixing1Activity extends Activity {
         btns[3] = btnRightBottom;
 
         btns[mSelectButtonIndex].setSelected(true);
+        updateTextValue();
     }
 
-    private void doReset() {
-        mKeystoneVertex.reset(sp);
-    }
 
     @Override
     public boolean onKeyDown(int keyCode, KeyEvent event) {
-        if (keyCode == KeyEvent.KEYCODE_DPAD_LEFT) {
-            pressLeft();
-        } else if (keyCode == KeyEvent.KEYCODE_DPAD_RIGHT) {
-            pressRight();
-        } else if (keyCode == KeyEvent.KEYCODE_DPAD_UP) {
-            pressUp();
-        } else if (keyCode == KeyEvent.KEYCODE_DPAD_DOWN) {
-            pressDown();
-        } else if (keyCode == KeyEvent.KEYCODE_ENTER) {
-            selectNext();
-        } else if (keyCode == KeyEvent.KEYCODE_MENU) {
-            doReset();
-        }
         imageView.invalidate();
         updateTextValue();
-        Log.e("Stone", mKeystoneVertex.toString());
         return super.onKeyDown(keyCode, event);
     }
 
-    private void selectNext() {
+    @Override
+    protected void pressEnter() {
         btns[mSelectButtonIndex].setSelected(false);
         mSelectButtonIndex++;
         if (mSelectButtonIndex >= btns.length) {
@@ -126,7 +83,13 @@ public class Tixing1Activity extends Activity {
         btns[mSelectButtonIndex].setSelected(true);
     }
 
-    private void pressDown() {
+    @Override
+    public void pressMenu() {
+        mKeystoneVertex.reset(sp);
+    }
+
+    @Override
+    public void pressDown() {
         if (btns[mSelectButtonIndex] == btnLeftTop) {
             mKeystoneVertex.leftTopDoDown(sp);
         } else if (btns[mSelectButtonIndex] == btnLeftBottom) {
@@ -138,7 +101,8 @@ public class Tixing1Activity extends Activity {
         }
     }
 
-    private void pressUp() {
+    @Override
+    public void pressUp() {
         if (btns[mSelectButtonIndex] == btnLeftTop) {
             mKeystoneVertex.leftTopDoUp(sp);
         } else if (btns[mSelectButtonIndex] == btnLeftBottom) {
@@ -150,7 +114,8 @@ public class Tixing1Activity extends Activity {
         }
     }
 
-    private void pressRight() {
+    @Override
+    public void pressRight() {
         if (btns[mSelectButtonIndex] == btnLeftTop) {
             mKeystoneVertex.leftTopDoRight(sp);
         } else if (btns[mSelectButtonIndex] == btnLeftBottom) {
@@ -162,7 +127,8 @@ public class Tixing1Activity extends Activity {
         }
     }
 
-    private void pressLeft() {
+    @Override
+    public void pressLeft() {
         if (btns[mSelectButtonIndex] == btnLeftTop) {
             mKeystoneVertex.leftTopDoLeft(sp);
         } else if (btns[mSelectButtonIndex] == btnLeftBottom) {

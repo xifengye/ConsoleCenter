@@ -1,17 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.cptp.console"
-	android:versionCode="1"
-    android:versionName="1.0.0"
     android:sharedUserId="android.uid.system"
-	>
+    android:versionCode="1"
+    android:versionName="1.0.0">
+
+    <uses-sdk
+        android:maxSdkVersion="23"
+        android:targetSdkVersion="23" />
 
     <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED" />
-    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
-    <uses-permission android:name="android.permission.WRITE_SETTINGS"/>
-    <uses-sdk
-        android:targetSdkVersion="23"
-        android:maxSdkVersion="23" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.WRITE_SETTINGS" />
 
     <application
         android:allowBackup="true"
@@ -19,7 +19,8 @@
         android:label="@string/app_name"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name="com.cptp.console.HomeActivity">
+        <activity android:name=".new_iml.ZoomActivity"></activity>
+        <activity android:name=".HomeActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <action android:name="android.intent.action.VIEW" />
@@ -27,20 +28,17 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name="com.cptp.console.ZoomActivity">
-        </activity>
-        <activity android:name="com.cptp.console.TixingActivity"/>
-        <activity android:name="com.cptp.console.Tixing1Activity"/>
-<!--        <activity android:name=".MainActivity">-->
-<!--        </activity>-->
-
+        <activity android:name=".ZoomActivity"></activity>
+        <activity android:name=".TixingActivity" />
+        <activity android:name=".new_iml.TixingActivity" /> <!-- <activity android:name=".MainActivity"> -->
+        <!-- </activity> -->
         <service
-            android:name="com.cptp.console.KeystoneService"
+            android:name=".KeystoneService"
             android:enabled="true"
             android:exported="true" />
 
         <receiver
-            android:name="com.cptp.console.KeystoneReceiver"
+            android:name=".KeystoneReceiver"
             android:enabled="true"
             android:exported="true">
             <intent-filter>

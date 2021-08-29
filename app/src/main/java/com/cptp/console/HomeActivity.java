@@ -13,6 +13,8 @@ import android.widget.SeekBar;
 
 import com.cptp.console.keystone.KeystoneDemo;
 import com.cptp.console.keystone.SystemProperties;
+import com.cptp.console.new_iml.TixingActivity;
+import com.cptp.console.new_iml.ZoomActivity;
 import com.cptp.console.utils.AdjustColorCompute;
 
 import java.io.BufferedReader;
@@ -72,6 +74,13 @@ public class HomeActivity extends Activity {
 
 
     public void initView() {
+        View btn_zoom = (Button) findViewById(R.id.btn_zoom);
+        btn_zoom.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                ZoomActivity.start(HomeActivity.this);
+            }
+        });
         btn_daozhi = (Button) findViewById(R.id.btn_daozhi);
         btn_daozhi.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -92,14 +101,14 @@ public class HomeActivity extends Activity {
         btn_tixing.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(new Intent(HomeActivity.this, TixingActivity.class));
+                startActivity(new Intent(HomeActivity.this, com.cptp.console.TixingActivity.class));
             }
         });
         btn_tixing1 = (Button) findViewById(R.id.btn_tixing1);
         btn_tixing1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(new Intent(HomeActivity.this, Tixing1Activity.class));
+                startActivity(new Intent(HomeActivity.this, TixingActivity.class));
             }
         });
         btn_tixing1.requestFocus();
